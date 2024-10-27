@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brandColor">@color/blue</color>
+    <color name="textPrimaryColor">@color/red</color>
+    <color name="backRedActivity">@color/red</color>
+    <color name="textRedActivity">@color/white</color>
+    <color name="backGreenActivity">@color/green</color>
+</resources>

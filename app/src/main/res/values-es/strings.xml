@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Seminario</string>
+    <string name="app_tittle">Mi primera App Android</string>
+    <string name="app_tittle2">Bienvenidos a Cinema</string>
+    <string name="button_text">Haz Click</string>
+    <string name="button_reset">Resetear</string>
+    <string name="button_white_navigate">Navegar a Rojo</string>
+    <string name="button_red_navigate">Navegar a Verde</string>
+    <string name="button_green_navigate">Navegar a blanco</string>
+    <string name="loadUsers">Cargar Usuarios</string>
+</resources>
