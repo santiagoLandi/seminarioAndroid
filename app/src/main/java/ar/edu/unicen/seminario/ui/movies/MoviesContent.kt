@@ -17,9 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ar.edu.unicen.seminario.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun moviesContent(
@@ -39,14 +41,16 @@ fun moviesContent(
         Spacer(modifier = Modifier.height(32.dp))
         Button(
             modifier = Modifier
-                       .width(150.dp),
+                       .width(200.dp),
             enabled = !isLoading,
             onClick = {
                 onRefreshLoad()
             }
         ) {
             Text(
-                text = stringResource(id = R.string.loadMovies)
+                modifier = Modifier.fillMaxWidth(), // Esto centrará el texto dentro del botón
+                text = stringResource(id = R.string.loadMovies),
+                textAlign = TextAlign.Center // Asegúrate de que el texto esté alineado al centro
             )
         }
 
@@ -69,7 +73,7 @@ fun moviesContent(
                         }
                     )
                     // Llamada a cargar más películas cuando quedan pocos elementos
-                    if (index >= movies.size - 5 && !isLoading) {
+                    if (index >= movies.size - 2 && !isLoading) {
                         onLoadMore()
                     }
                 }

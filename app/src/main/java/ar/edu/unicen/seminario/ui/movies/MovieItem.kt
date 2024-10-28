@@ -31,6 +31,8 @@ fun movieItem(
     posterPath:String,
     onClick: () -> Unit
 ){
+    val baseImageURL = "https://image.tmdb.org/t/p/w500"
+    val fullImageURL = baseImageURL + posterPath
     Row (
         modifier = modifier
             .clickable { onClick() },//es para la navegabilidad, el item registra cuando lo clickean para ir a la pantalla con mas info
@@ -41,7 +43,7 @@ fun movieItem(
         GlideImage(
             modifier = Modifier
                       .size(40.dp),
-            model = posterPath ,
+            model = fullImageURL ,
             contentDescription = null
         )
         Column {

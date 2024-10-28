@@ -7,6 +7,7 @@ import ar.edu.unicen.seminario.ddl.data.MovieDTO
 import ar.edu.unicen.seminario.ddl.data.MovieRepository
 import ar.edu.unicen.seminario.ddl.models.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -36,6 +37,8 @@ class MovieViewModel @Inject constructor (
             _movies.value = null
 
             val popularMovies = movieRepository.getPopularMovies(apiKey, currentPage)
+
+            delay(500)
 
             if (popularMovies != null) {
                 // Combina la lista actual de películas con la nueva
