@@ -2,7 +2,8 @@ package ar.edu.unicen.seminario.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import ar.edu.unicen.seminario.ddl.data.BoredRepository
+import ar.edu.unicen.seminario.BuildConfig
+import ar.edu.unicen.seminario.ddl.data.MovieDTO
 import ar.edu.unicen.seminario.ddl.data.MovieRepository
 import ar.edu.unicen.seminario.ddl.models.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,21 +22,30 @@ class MovieViewModel @Inject constructor (
     private val _error = MutableStateFlow(false)
     val error = _error.asStateFlow()
 
-    private val _movies = MutableStateFlow<List<Movie>?>(null)
+    private val _movies = MutableStateFlow<List<MovieDTO>?>(null)
     val movies = _movies.asStateFlow()
 
+    private val apiKey = BuildConfig.THE_MOVIE_DB_API_KEY
+    private var currentPage:Int=1
+
     fun getMovies(
-        quantity:Int
     ){
         viewModelScope.launch {
             _loading.value = true
             _error.value = false
             _movies.value = null
 
-            val movies = movieRepository.getPopularMovies(apiKey, page)
+            val popularMovies = movieRepository.getPopularMovies(apiKey, currentPage)
+
+            if (popularMovies != null) {
+                // Combina la lista actual de películas con la nueva
+                _movies.value = _movies.value.orEmpty() + popularMovies
+                currentPage++ // Aumenta el número de página para la próxima solicitud
+            }
+
 
             _loading.value = false
-            _movies.value = movies
+            _movies.value = popularMovies
             _error.value = movies == null
 
         }

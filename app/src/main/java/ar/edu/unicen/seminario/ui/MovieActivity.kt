@@ -27,20 +27,17 @@ class MovieActivity: AppCompatActivity() {
 
             NavHost(
                 navController = navController,
-                startDestination = "movies"
+                startDestination = "movie"
             ){
                 composable(
-                    route = "movies"
+                    route = "movie"
                 ) {
                     moviesScreen(               //cuando hagan click en un item, el item le avisa al contenido, el contenido le avisa al screen y
                         viewModel = viewModel,  // el screen le avisa a nuestro componente de navegacion (en activity) e ir a los detalles.
-                                                // Lo idea ahi es pasar un {id} no un movieUIModel. Ya que para mostrar recibimos todos los datos
+                                                // Lo ideal ahi es pasar un {id} no un movieUIModel. Ya que para mostrar recibimos todos los datos
                                                 // por parametro
-                        goDetails = {
-                            movieUIModel ->   //deberia pasar un id aca
-                            navController.navigate(
-                                "movie/{movieId}"
-                            )
+                        goDetails = { movieUIModel ->
+                            navController.navigate("movie/${movieUIModel.id}")
                         }
                     )
                 }
@@ -49,12 +46,10 @@ class MovieActivity: AppCompatActivity() {
                     route = "movie/{movieId}" //seria la mejor forma, pasar solo un id
                 ) {
                     movieScreen(
-                        name = "",
-                        email = "",
-                        phone = "",
-                        adress = "",
-                        image = "",
-                        thumbnail = ""
+                        title = "",
+                        releaseDate = "",
+                        overview = "",
+                        posterPath = "",
                     )
                 }
             }

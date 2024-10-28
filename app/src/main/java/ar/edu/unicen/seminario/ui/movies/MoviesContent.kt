@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -25,6 +26,7 @@ fun moviesContent(
     isLoading:Boolean,
     movies: List<MovieUIModel>,
     onRefreshLoad: () -> Unit,
+    onLoadMore: () -> Unit, // Función para cargar más películas
     onMovieClicked: (MovieUIModel) -> Unit
 ){
 
@@ -44,7 +46,7 @@ fun moviesContent(
             }
         ) {
             Text(
-                text = stringResource(id = R.string.loadUsers)
+                text = stringResource(id = R.string.loadMovies)
             )
         }
 
@@ -56,16 +58,20 @@ fun moviesContent(
             LazyColumn(
                 modifier = Modifier.fillMaxWidth()) {
 
-                items(movies){ movie ->
+                itemsIndexed(movies){ index,movie ->
                     movieItem(
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                        name = movie.name,
-                        email = movie.email,
-                        thumbnail = movie.thumbnail,
+                        tittle = movie.title,
+                        releaseDate = movie.releaseDate,
+                        posterPath = movie.posterPath,
                         onClick = {
                             onMovieClicked(movie)
                         }
                     )
+                    // Llamada a cargar más películas cuando quedan pocos elementos
+                    if (index >= movies.size - 5 && !isLoading) {
+                        onLoadMore()
+                    }
                 }
             }
         }
@@ -79,39 +85,32 @@ private fun movieContentPreview(){
         isLoading = false,
         movies = listOf(
             MovieUIModel(
-                name = "Carlos Sánchez",
-                email = "carlos.sanchez@example.com",
-                phone = "+1234567890",
-                adress = "123 Calle Falsa, Ciudad",
-                image = "https://example.com/image1.jpg",
-                thumbnail = "https://example.com/thumbnail1.jpg"
+                id = 1,
+                title = "Scarface",
+                releaseDate = "02/01/1979",
+                posterPath = ""
             ),
             MovieUIModel(
-                name = "María López",
-                email = "maria.lopez@example.com",
-                phone = "+0987654321",
-                adress = "456 Avenida Real, Ciudad",
-                image = "https://example.com/image2.jpg",
-                thumbnail = "https://example.com/thumbnail2.jpg"
+                id = 2,
+                title = "Armagedon",
+                releaseDate = "05/08/2000",
+                posterPath = ""
             ),
             MovieUIModel(
-                name = "Juan Pérez",
-                email = "juan.perez@example.com",
-                phone = "+1122334455",
-                adress = "789 Boulevard Central, Ciudad",
-                image = "https://example.com/image3.jpg",
-                thumbnail = "https://example.com/thumbnail3.jpg"
+                id = 3,
+                title = "Bad Boys",
+                releaseDate = "01/08/2006",
+                posterPath = ""
             ),
             MovieUIModel(
-                name = "Ana Martínez",
-                email = "ana.martinez@example.com",
-                phone = "+5566778899",
-                adress = "1011 Paseo de la Paz, Ciudad",
-                image = "https://example.com/image4.jpg",
-                thumbnail = "https://example.com/thumbnail4.jpg"
+                id = 4,
+                title = "El justiciero",
+                releaseDate = "20/06/2012",
+                posterPath = ""
             )
         ),
         onRefreshLoad = {},
+        onLoadMore = {},
         onMovieClicked = {}
     )
 }

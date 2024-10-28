@@ -26,9 +26,9 @@ import com.bumptech.glide.integration.compose.GlideImage
 @Composable
 fun movieItem(
     modifier: Modifier = Modifier,
-    name: String,
-    email: String,
-    thumbnail:String,
+    tittle: String,
+    releaseDate: String,
+    posterPath:String,
     onClick: () -> Unit
 ){
     Row (
@@ -41,17 +41,17 @@ fun movieItem(
         GlideImage(
             modifier = Modifier
                       .size(40.dp),
-            model = thumbnail ,
+            model = posterPath ,
             contentDescription = null
         )
         Column {
             Text(
-                text = name,
+                text = tittle,
                 style = MaterialTheme.typography.titleLarge,
                 color = colorResource(id = R.color.backGreenActivity)
             )
             Text(
-                text = email,
+                text = releaseDate,
                 style = MaterialTheme.typography.bodyLarge,
                 color = colorResource(id = R.color.brandColor)
             )
@@ -66,9 +66,9 @@ private fun movieItemPreview(){
         modifier = Modifier
                    .fillMaxWidth()
                    .padding(12.dp),
-        name = "Carlos",
-        email = "carlos@carlos.com",
-        thumbnail = "url",
+        tittle = "Gladiador",
+        releaseDate = "04/03/2001",
+        posterPath = "url",
         onClick = { }
     )
 }

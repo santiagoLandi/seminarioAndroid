@@ -47,6 +47,7 @@ android {
     buildFeatures{
         viewBinding = true
         compose = true
+        buildConfig = true // Habilita la generación de BuildConfig
     }
     // Especifica la versión del compilador de Compose aquí
    // composeOptions {

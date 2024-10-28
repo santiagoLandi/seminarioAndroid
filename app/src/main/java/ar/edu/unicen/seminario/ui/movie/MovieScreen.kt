@@ -20,12 +20,11 @@ import com.bumptech.glide.integration.compose.GlideImage
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun movieScreen(
-    name:String,
-    email:String,
-    phone:String,
-    adress:String,
-    image: String,
-    thumbnail:String
+    title:String,
+    releaseDate:String,
+    overview:String,
+    posterPath: String
+
 ){
     Column(
         modifier = Modifier
@@ -37,26 +36,21 @@ fun movieScreen(
 
         GlideImage(
             modifier = Modifier.size(160.dp),
-            model = image,
+            model = posterPath,
             contentDescription = null
         )
         Text(
-            text = name,
+            text = title,
             style = MaterialTheme.typography.bodyLarge,
             color = colorResource(id= R.color.brandColor)
         )
         Text(
-            text = email,
+            text = releaseDate,
             style = MaterialTheme.typography.bodyLarge,
             color = colorResource(id= R.color.brandColor)
         )
         Text(
-            text = phone,
-            style = MaterialTheme.typography.bodyLarge,
-            color = colorResource(id= R.color.brandColor)
-        )
-        Text(
-            text = adress,
+            text = overview,
             style = MaterialTheme.typography.bodyLarge,
             color = colorResource(id= R.color.brandColor)
         )

@@ -1,6 +1,5 @@
 package ar.edu.unicen.seminario.di
 
-import ar.edu.unicen.seminario.ddl.data.BoredApi
 import ar.edu.unicen.seminario.ddl.data.MovieApi
 import dagger.Module
 import dagger.Provides

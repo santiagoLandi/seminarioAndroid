@@ -7,5 +7,5 @@
     <string name="button_white_navigate">Navigate to Red</string>
     <string name="button_red_navigate">Navigate to Green</string>
     <string name="button_green_navigate">Navigate to White</string>
-    <string name="loadUsers">Load Users</string>
+    <string name="loadMovies">Load Popular Movies</string>
 </resources>
