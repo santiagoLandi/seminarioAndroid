@@ -22,6 +22,7 @@ android {
         versionName = "$versionMajor.$versionMinor.$versionPatch"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "THE_MOVIE_DB_API_KEY", "\"${project.findProperty("THE_MOVIE_DB_API_KEY")}\"")
     }
 
     buildTypes {
@@ -31,7 +32,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-           signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debug")
+
         }
 
     }

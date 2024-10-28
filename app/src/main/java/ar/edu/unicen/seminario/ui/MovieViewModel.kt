@@ -3,6 +3,7 @@ package ar.edu.unicen.seminario.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.unicen.seminario.ddl.data.BoredRepository
+import ar.edu.unicen.seminario.ddl.data.MovieRepository
 import ar.edu.unicen.seminario.ddl.models.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,7 +32,7 @@ class MovieViewModel @Inject constructor (
             _error.value = false
             _movies.value = null
 
-            val movies = movieRepository.getMovies(quantity)
+            val movies = movieRepository.getPopularMovies(apiKey, page)
 
             _loading.value = false
             _movies.value = movies
