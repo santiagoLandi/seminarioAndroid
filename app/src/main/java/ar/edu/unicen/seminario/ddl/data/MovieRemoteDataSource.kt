@@ -23,4 +23,20 @@ class MovieRemoteDataSource @Inject constructor(
             }
         }
     }
+
+    suspend fun getMovieDetails(id:Int,apiKey: String): MovieDTO?{
+        return withContext(Dispatchers.IO){
+            try {
+                val response = movieApi.getMovieDetails(id,apiKey)
+                if(response.isSuccessful){
+                    response.body()
+                }else{
+                    null
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null // Retorna null en caso de excepción
+            }
+        }
+    }
 }

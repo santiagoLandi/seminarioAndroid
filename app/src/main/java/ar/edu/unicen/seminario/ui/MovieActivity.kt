@@ -43,13 +43,13 @@ class MovieActivity: AppCompatActivity() {
                 }
 
                 composable(
-                    route = "movie/{movieId}" //seria la mejor forma, pasar solo un id
-                ) {
+                    route = "movie/{movieId}"
+                ) { backStackEntry ->
+                    val movieId = backStackEntry.arguments?.getString("movieId")?.toIntOrNull() ?: return@composable
                     movieScreen(
-                        title = "",
-                        releaseDate = "",
-                        overview = "",
-                        posterPath = "",
+                        id = movieId,
+                        viewModel = viewModel,
+                        onBack = { navController.popBackStack() } // Regresar a la pantalla anterior
                     )
                 }
             }

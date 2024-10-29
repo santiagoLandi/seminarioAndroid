@@ -1,7 +1,9 @@
 package ar.edu.unicen.seminario.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+
 import ar.edu.unicen.seminario.BuildConfig
 import ar.edu.unicen.seminario.ddl.data.MovieDTO
 import ar.edu.unicen.seminario.ddl.data.MovieRepository
@@ -29,6 +31,9 @@ class MovieViewModel @Inject constructor (
     private val apiKey = BuildConfig.THE_MOVIE_DB_API_KEY
     private var currentPage:Int=1
 
+    private val _movieDetails = MutableStateFlow<MovieDTO?>(null)
+    val movieDetails = _movieDetails.asStateFlow()
+
     fun getMovies(
     ){
         viewModelScope.launch {
@@ -51,6 +56,15 @@ class MovieViewModel @Inject constructor (
             _movies.value = popularMovies
             _error.value = movies == null
 
+        }
+    }
+
+    fun getMovieDetails(movieId: Int) {
+        viewModelScope.launch {
+            // Aquí llama a tu repositorio para obtener los detalles de la película
+            _movieDetails.value = movieRepository.getMovieDetails(movieId,apiKey)
+            // Verifica los detalles cargados en consola
+            Log.d("MovieViewModel", "Detalles de la película cargados: ${_movieDetails.value}")
         }
     }
 }

@@ -15,7 +15,7 @@ class MovieModule {
     @Provides
     fun providesRetrofit():Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/movie/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

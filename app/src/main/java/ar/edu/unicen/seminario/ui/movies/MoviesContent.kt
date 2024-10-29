@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,8 +51,10 @@ fun moviesContent(
             Text(
                 modifier = Modifier.fillMaxWidth(), // Esto centrará el texto dentro del botón
                 text = stringResource(id = R.string.loadMovies),
-                textAlign = TextAlign.Center // Asegúrate de que el texto esté alineado al centro
+                textAlign = TextAlign.Center, // Asegúrate de que el texto esté alineado al centro
+                color = colorResource(R.color.textButton)
             )
+
         }
 
         Spacer(modifier = Modifier.height(32.dp))

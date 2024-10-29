@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.motion.widget.MotionScene.Transition.TransitionOnClick
@@ -42,7 +43,7 @@ fun movieItem(
 
         GlideImage(
             modifier = Modifier
-                      .size(40.dp),
+                      .size(50.dp),
             model = fullImageURL ,
             contentDescription = null
         )
@@ -50,7 +51,8 @@ fun movieItem(
             Text(
                 text = tittle,
                 style = MaterialTheme.typography.titleLarge,
-                color = colorResource(id = R.color.backGreenActivity)
+                fontWeight = FontWeight.Bold,
+                color = colorResource(id = R.color.backGreen)
             )
             Text(
                 text = releaseDate,
