@@ -17,12 +17,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ar.edu.unicen.seminario.R
 import ar.edu.unicen.seminario.ui.MovieViewModel
+import ar.edu.unicen.seminario.utils.getGenreNames
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -34,10 +36,8 @@ fun movieScreen(
     viewModel: MovieViewModel,
     onBack: () -> Unit
 ) {
-    // Obtenemos el estado de los detalles de la película
     val movieDetails by viewModel.movieDetails.collectAsStateWithLifecycle()
 
-    // Lanzamos la solicitud de detalles de la película al cargar la pantalla
     LaunchedEffect(id) {
         viewModel.getMovieDetails(id)
     }
@@ -53,8 +53,9 @@ fun movieScreen(
 
         // Comprobamos si movieDetails tiene los datos de la película
         movieDetails?.let { movie ->
+            Log.d("MovieScreen", "Generos IDs: ${movie.genreIds}")
             GlideImage(
-                modifier = Modifier.size(350.dp),
+                modifier = Modifier.size(300.dp),
                 model = "https://image.tmdb.org/t/p/w500${movie.posterPath}",
                 contentDescription = movie.title
             )
@@ -66,6 +67,19 @@ fun movieScreen(
             )
             Text(
                 text = movieDetails?.releaseDate ?: "Fecha no disponible",
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                color = colorResource(id = R.color.bodyText)
+            )
+            Text(
+                text = "Géneros: ${getGenreNames(movie.genreIds)}",
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                color = colorResource(id = R.color.bodyText)
+            )
+
+            Text(
+                text = movieDetails?.voteAverage ?: "Puntuacion no disponible",
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Center,
                 color = colorResource(id = R.color.bodyText)
@@ -84,14 +98,15 @@ fun movieScreen(
                 color = colorResource(id = R.color.brandColor)
             )
         }
-
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         Button(
             onClick = onBack,
             modifier = Modifier
                        .padding(16.dp)) {
-            Text("Volver")
+            Text(
+                text = stringResource(id= R.string.back_button)
+            )
         }
     }
 }

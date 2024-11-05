@@ -15,12 +15,17 @@ data class MovieDTO(
     @SerializedName("overview")
     val overview:String,
     @SerializedName("poster_path")
-    val posterPath: String // Este campo contendrá el camino de la imagen
+    val posterPath: String,
+    @SerializedName("vote_average")
+    val voteAverage: String,
+    @SerializedName("genre_ids")
+    val genreIds: List<Int>?
+
 )
 
 fun MovieDTO.toUiModel(): MovieUIModel {
     return MovieUIModel(
-        id = id,  // Pasa el ID
+        id = id,
         title = title,
         releaseDate = releaseDate,
         posterPath = posterPath

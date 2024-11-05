@@ -24,6 +24,6 @@ class MovieModule {
     fun providesMovieApi(
         retrofit: Retrofit
     ): MovieApi {
-        return retrofit.create(MovieApi::class.java)//crea una instancia de la interfaz con la implementacion del metodo
+        return retrofit.create(MovieApi::class.java)
     }
 }
