@@ -27,7 +27,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true //le decimos q elimine el codigo q no utilizamos, hace q ocupe menos espacio
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -47,12 +47,8 @@ android {
     buildFeatures{
         viewBinding = true
         compose = true
-        buildConfig = true // Habilita la generación de BuildConfig
+        buildConfig = true
     }
-    // Especifica la versión del compilador de Compose aquí
-   // composeOptions {
-   //     kotlinCompilerExtensionVersion = "1.6.8" // Ajusta esta versión si es necesario
-   // }
 }
 
 dependencies {

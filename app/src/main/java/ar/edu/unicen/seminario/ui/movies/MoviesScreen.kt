@@ -9,10 +9,10 @@ import ar.edu.unicen.seminario.ui.MovieViewModel
 @Composable
 fun moviesScreen(
     viewModel: MovieViewModel,
-    goDetails: (MovieUIModel) -> Unit //para que moviesScreen nos indique cuando se quiere nav a otra pantalla
+    goDetails: (MovieUIModel) -> Unit
 ) {
     val isLoading:Boolean by viewModel.loading.collectAsStateWithLifecycle()
-    val movies by viewModel.movies.collectAsStateWithLifecycle() // Obtiene la lista de películas desde el ViewModel
+    val movies by viewModel.movies.collectAsStateWithLifecycle()
 
     moviesContent(
         isLoading = isLoading,

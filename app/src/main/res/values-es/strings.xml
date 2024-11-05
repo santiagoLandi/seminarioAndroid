@@ -8,5 +8,6 @@
     <string name="button_white_navigate">Navegar a Rojo</string>
     <string name="button_red_navigate">Navegar a Verde</string>
     <string name="button_green_navigate">Navegar a blanco</string>
-    <string name="loadMovies">Mostrar Peliculas Populares</string>
+    <string name="load_movies">Mostrar Peliculas Populares</string>
+    <string name="back_button">Volver</string>
 </resources>

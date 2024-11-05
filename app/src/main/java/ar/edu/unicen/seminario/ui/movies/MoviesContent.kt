@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,14 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ar.edu.unicen.seminario.R
-import kotlinx.coroutines.delay
+
 
 @Composable
 fun moviesContent(
     isLoading:Boolean,
     movies: List<MovieUIModel>,
     onRefreshLoad: () -> Unit,
-    onLoadMore: () -> Unit, // Función para cargar más películas
+    onLoadMore: () -> Unit,
     onMovieClicked: (MovieUIModel) -> Unit
 ){
 
@@ -49,9 +48,9 @@ fun moviesContent(
             }
         ) {
             Text(
-                modifier = Modifier.fillMaxWidth(), // Esto centrará el texto dentro del botón
-                text = stringResource(id = R.string.loadMovies),
-                textAlign = TextAlign.Center, // Asegúrate de que el texto esté alineado al centro
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResource(id = R.string.load_movies),
+                textAlign = TextAlign.Center,
                 color = colorResource(R.color.textButton)
             )
 
@@ -75,7 +74,7 @@ fun moviesContent(
                             onMovieClicked(movie)
                         }
                     )
-                    // Llamada a cargar más películas cuando quedan pocos elementos
+
                     if (index >= movies.size - 2 && !isLoading) {
                         onLoadMore()
                     }

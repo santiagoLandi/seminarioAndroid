@@ -12,14 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.motion.widget.MotionScene.Transition.TransitionOnClick
 import ar.edu.unicen.seminario.R
-import com.bumptech.glide.Glide
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -36,7 +33,7 @@ fun movieItem(
     val fullImageURL = baseImageURL + posterPath
     Row (
         modifier = modifier
-            .clickable { onClick() },//es para la navegabilidad, el item registra cuando lo clickean para ir a la pantalla con mas info
+            .clickable { onClick() },
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ){

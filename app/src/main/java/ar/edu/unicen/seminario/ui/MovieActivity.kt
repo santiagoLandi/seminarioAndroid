@@ -32,10 +32,8 @@ class MovieActivity: AppCompatActivity() {
                 composable(
                     route = "movie"
                 ) {
-                    moviesScreen(               //cuando hagan click en un item, el item le avisa al contenido, el contenido le avisa al screen y
-                        viewModel = viewModel,  // el screen le avisa a nuestro componente de navegacion (en activity) e ir a los detalles.
-                                                // Lo ideal ahi es pasar un {id} no un movieUIModel. Ya que para mostrar recibimos todos los datos
-                                                // por parametro
+                    moviesScreen(
+                        viewModel = viewModel,
                         goDetails = { movieUIModel ->
                             navController.navigate("movie/${movieUIModel.id}")
                         }
@@ -49,7 +47,7 @@ class MovieActivity: AppCompatActivity() {
                     movieScreen(
                         id = movieId,
                         viewModel = viewModel,
-                        onBack = { navController.popBackStack() } // Regresar a la pantalla anterior
+                        onBack = { navController.popBackStack() }
                     )
                 }
             }

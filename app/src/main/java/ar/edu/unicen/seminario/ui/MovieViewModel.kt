@@ -3,11 +3,9 @@ package ar.edu.unicen.seminario.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import ar.edu.unicen.seminario.BuildConfig
 import ar.edu.unicen.seminario.ddl.data.MovieDTO
 import ar.edu.unicen.seminario.ddl.data.MovieRepository
-import ar.edu.unicen.seminario.ddl.models.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +26,7 @@ class MovieViewModel @Inject constructor (
     private val _movies = MutableStateFlow<List<MovieDTO>?>(null)
     val movies = _movies.asStateFlow()
 
-    private val apiKey = BuildConfig.THE_MOVIE_DB_API_KEY
+    private val api = BuildConfig.THE_MOVIE_DB_API_KEY
     private var currentPage:Int=1
 
     private val _movieDetails = MutableStateFlow<MovieDTO?>(null)
@@ -41,14 +39,13 @@ class MovieViewModel @Inject constructor (
             _error.value = false
             _movies.value = null
 
-            val popularMovies = movieRepository.getPopularMovies(apiKey, currentPage)
+            val popularMovies = movieRepository.getPopularMovies(api, currentPage)
 
             delay(500)
 
             if (popularMovies != null) {
-                // Combina la lista actual de películas con la nueva
                 _movies.value = _movies.value.orEmpty() + popularMovies
-                currentPage++ // Aumenta el número de página para la próxima solicitud
+                currentPage++
             }
 
 
@@ -61,10 +58,7 @@ class MovieViewModel @Inject constructor (
 
     fun getMovieDetails(movieId: Int) {
         viewModelScope.launch {
-            // Aquí llama a tu repositorio para obtener los detalles de la película
-            _movieDetails.value = movieRepository.getMovieDetails(movieId,apiKey)
-            // Verifica los detalles cargados en consola
-            Log.d("MovieViewModel", "Detalles de la película cargados: ${_movieDetails.value}")
+            _movieDetails.value = movieRepository.getMovieDetails(movieId,api)
         }
     }
 }
