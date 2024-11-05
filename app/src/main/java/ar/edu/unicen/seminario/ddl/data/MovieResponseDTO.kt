@@ -5,7 +5,7 @@ import androidx.annotation.Keep
 @Keep
 data class MovieResponseDTO(
     val page: Int,
-    val results: List<MovieDTO>, // Lista de películas
+    val results: List<MovieDTO>,
     val totalResults: Int,
     val totalPages: Int
 )

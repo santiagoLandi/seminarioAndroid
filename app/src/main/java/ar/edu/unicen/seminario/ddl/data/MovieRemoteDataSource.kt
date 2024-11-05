@@ -19,7 +19,7 @@ class MovieRemoteDataSource @Inject constructor(
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                null // Retorna null en caso de excepción
+                null 
             }
         }
     }
@@ -35,7 +35,7 @@ class MovieRemoteDataSource @Inject constructor(
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                null // Retorna null en caso de excepción
+                null
             }
         }
     }
